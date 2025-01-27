@@ -1,0 +1,13 @@
+{
+  "name": "alpine",
+  "module": "src/index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.0.0",
+    "@types/bun": "latest",
+    "tailwindcss": "^4.0.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

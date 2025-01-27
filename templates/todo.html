@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/css/style.css" />
+        <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/sort@3.x.x/dist/cdn.min.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    </head>
+    <body class="dark:bg-zinc-950 bg-zinc-100 h-screen p-4">
+        <main>
+            <h1 class="text-3xl font-bold text-center zinc-700 dark:text-zinc-300">Todo List</h1>
+            <div class="max-w-2xl mx-auto p-6" x-data="{todos: []}">
+                <div class="mb-6">
+                    <div class="flex gap-2" x-data="{newTodo: ''}">
+                        <script>
+                          addTodo = () => {
+                              this.todos.push({
+                                  id: Date.now(),
+                                  text: this.newTodo,
+                                  completed: false,
+                              })
+
+                              this.newTodo = '';
+                          }
+                        </script>
+                        <input
+                            type="text"
+                            x-model="newTodo"
+                            @keyup.enter="addTodo()"
+                            placeholder="Add a new todo..."
+                            class="flex-1 px-4 py-2 border border-gray-300 dark:bg-zinc-800 dark:text-zinc-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        >
+                        <button
+                            @click="addTodo()"
+                            class="px-4 py-2 bg-blue-500 dark:bg-blue-600 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+                        >
+                            Add Todo
+                        </button>
+                    </div>
+                </div>
+                <div class="space-y-2" x-data="{
+                    toggleTodo(id) {
+                        const todo = this.todos.find(x => x.id === id);
+                        if (todo) {
+                            todo.completed = !todo.completed;
+                        }
+                    },
+                    removeTodo(id) {
+                        this.todos = this.todos.filter(x => x.id !== id);
+                    },
+                }">
+                    <template x-for="todo in todos" :key="todo.id">
+                        <div
+                            x-sort:item="todo.id"
+                            class="flex items-center gap-3 p-4 bg-white dark:bg-zinc-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 dark:text-zinc-300 transition-colors duration-200 cursor-pointer"
+                            :class="{ 'bg-gray-50 dark:bg-zinc-900': todo.completed }"
+                        >
+                            <input
+                                type="checkbox"
+                                :checked="todo.completed"
+                                @click="toggleTodo(todo.id)"
+                                class="w-4 h-4 text-blue-500 rounded focus:ring-blue-500"
+                            >
+                            <span
+                                x-text="todo.text"
+                                class="flex-1"
+                                :class="{ 'line-through text-gray-500': todo.completed }"
+                            ></span>
+                            <button
+                                @click="removeTodo(todo.id)"
+                                class="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors"
+                            >
+                                Delete
+                            </button>
+                        </div>
+                    </template>
+                </div>
+        </main>
+    </body>
+</html>
