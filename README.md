@@ -1,5 +1,11 @@
 # alpine
 
+# Go
+
+To run this code, you need Go > 1.23 installed and can run the code using `make dev`
+
+# Tailwind
+
 To install dependencies:
 
 ```bash
