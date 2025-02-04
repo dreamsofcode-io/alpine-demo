@@ -33,6 +33,10 @@ func main() {
 		tmpl.ExecuteTemplate(w, "menu.html", nil)
 	})
 
+	r.HandleFunc("/collapse", func(w http.ResponseWriter, r *http.Request) {
+		tmpl.ExecuteTemplate(w, "collapse.html", nil)
+	})
+
 	srv := &http.Server{
 		Handler: middleware.Logging(logger)(r),
 		Addr:    ":8080",

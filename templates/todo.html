@@ -2,7 +2,6 @@
 <html>
     <head>
         <link rel="stylesheet" href="/static/css/style.css" />
-        <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/sort@3.x.x/dist/cdn.min.js"></script>
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     </head>
     <body class="dark:bg-zinc-950 bg-zinc-100 h-screen p-4">
@@ -50,7 +49,6 @@
                 }">
                     <template x-for="todo in todos" :key="todo.id">
                         <div
-                            x-sort:item="todo.id"
                             class="flex items-center gap-3 p-4 bg-white dark:bg-zinc-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 dark:text-zinc-300 transition-colors duration-200 cursor-pointer"
                             :class="{ 'bg-gray-50 dark:bg-zinc-900': todo.completed }"
                         >

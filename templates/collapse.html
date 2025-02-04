@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zen Menu (Zenu)</title>
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  </head>
+
+  <body class="bg-zinc-800 h-screen" x-data="{tabs: [{
+      name: 'Courses',
+      data: [
+        'Command Line Apps in Go',
+        'Mastering Redis',
+        'Fullstack Rust',
+        'NixOS for Glory'
+      ],
+    }, {
+      name: 'Apps',
+      data: [
+        'Zeng',
+        'Zenful Studio',
+        'Vault',
+      ]
+    }, {
+      name: 'Products',
+      data: [
+        'LGTM',
+        'Zencode',
+        'Fullstack Go Starter Kit'
+      ]
+    }]}">
+
+    <div class="h-screen w-128 bg-zinc-950 shadow-lg shadow-black overflow-y-auto">
+      <nav class="text-zinc-200">
+        <ul>
+          <template x-for="tab in tabs">
+            <li>
+              <div class="flex items-center justify-between py-4 px-4 hover:bg-gray-800">
+                <span x-text="tab.name"></span>
+                <svg class="text-zinc-500" fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24" style="color: currentcolor; width: 16px; height: 16px;">
+                  <path d="M6 9l6 6 6-6"></path>
+                </svg>
+              </div>
+              <template x-for="item in tab.data">
+                <div class="py-4 px-4 border-l ml-4 border-zinc-800 hover:border-zinc-500 hover:bg-zinc-900 text-zinc-100">
+                  <span class="text-xs" x-text="item"></span>
+                </div>
+              </template>
+            </li>
+          </template>
+        </ul>
+      </nav>
+    </div>
+  </body>
+</html>
